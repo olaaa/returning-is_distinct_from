@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS transactions
     counterparty_id bigint                   NOT NULL
 );
 
--- Покрывающий индекс под выборку операций счёта от новых к старым
+-- Покрывающий индекс под ленту операций счёта, разбор: transactions_account_covering_idx.md
 CREATE INDEX IF NOT EXISTS transactions_account_covering_idx
     ON transactions (account_id, created_at DESC)
     INCLUDE (amount, currency, direction);
